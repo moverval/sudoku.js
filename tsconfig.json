@@ -1,0 +1,27 @@
+{
+    "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
+        "declaration": true,
+        "diagnostics": true,
+        "target": "es5",
+        "downlevelIteration": true,
+        "forceConsistentCasingInFileNames": true,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": false,
+        "noUnusedParameters": false,
+        "removeComments": true,
+        "noLib": false,
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "typeRoots": [
+            "./node_modules/@types"
+        ],
+        "types": ["jest"],
+        "outDir": "./build",
+        "lib": ["dom", "es2015"]
+    },
+    "include": [
+        "./src/**/*"
+    ]
+}
