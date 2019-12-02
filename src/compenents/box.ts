@@ -16,4 +16,8 @@ export default class Box {
     set(value: number): void {
         this.value.set(value);
     }
+
+    isEmpty() {
+        return this.get() === 0;
+    }
 }

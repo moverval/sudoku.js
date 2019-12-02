@@ -5,7 +5,7 @@ import Column from "./compenents/column";
 import Caste from "./compenents/caste";
 import Perspective from "./compenents/perspective";
 import Table from "./compenents/table";
-import { indexToCasteData, CasteData } from "./compenents/util";
+import { indexToCasteData, casteToIndexData, indexToRowData, rowToIndexData, indexToColumnData, columnToIndexData } from "./compenents/util";
 
 export default class Sudoku {
     static Value: typeof Value = Value;
@@ -16,6 +16,11 @@ export default class Sudoku {
     static Perspective: typeof Perspective = Perspective;
     static Table: typeof Table = Table;
     static Util = {
-        indexToCasteData
+        indexToCasteData,
+        casteToIndexData,
+        indexToRowData,
+        rowToIndexData,
+        indexToColumnData,
+        columnToIndexData
     };
 }

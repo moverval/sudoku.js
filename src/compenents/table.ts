@@ -23,13 +23,23 @@ export default class Table {
         this.generate();
     }
 
+    backtrack() {
+        const random = Math.floor(Math.random() * 9) + 1;
+        this.real.forEach((box) => {
+            if(box.isEmpty()) {
+                // TODO check if sides are valid
+                return;
+            }
+        });
+    }
+
     generate() {
         for(let row = 0; row < 9; row++) {
             this.rows[row] = new Row();
             const point = row * 9;
             this.rows[row].setRow(this.real[point], this.real[point + 1], this.real[point + 2], this.real[point + 3], this.real[point + 4],
                                     this.real[point + 5], this.real[point + 6], this.real[point + 7], this.real[point + 8]);
-            this.rows[row].fillRandom();
+            // this.rows[row].fillRandom();
         }
         for(let column = 0; column < 9; column++) {
             this.columns[column] = new Column();
@@ -38,8 +48,6 @@ export default class Table {
                 this.real[point + 9 * 5], this.real[point + 9 * 6], this.real[point + 9 * 7], this.real[point + 9 * 8]);
         }
         for(let caste = 0; caste < 9; caste++) {
-            // this.castes[caste].setRow(this.real[point], this.real[point + 1], this.real[point + 2], this.real[point + 3], this.real[point + 4],
-            //     this.real[point + 5], this.real[point + 6], this.real[point + 7], this.real[point + 8]);
             for(let rowX = 0; rowX < 9; rowX++) {
                 const point = caste * 9 + rowX;
                 const casteData = indexToCasteData(point);
