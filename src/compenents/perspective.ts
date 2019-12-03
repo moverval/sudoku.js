@@ -53,4 +53,8 @@ export default class Perspective {
             }
         }
     }
+
+    valid(value: number) {
+        return this.queue.every((box) => box.get() !== value);
+    }
 }

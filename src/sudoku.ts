@@ -6,6 +6,7 @@ import Caste from "./compenents/caste";
 import Perspective from "./compenents/perspective";
 import Table from "./compenents/table";
 import { indexToCasteData, casteToIndexData, indexToRowData, rowToIndexData, indexToColumnData, columnToIndexData } from "./compenents/util";
+import Backtrack from "./compenents/backtrack";
 
 export default class Sudoku {
     static Value: typeof Value = Value;
@@ -15,6 +16,7 @@ export default class Sudoku {
     static Caste: typeof Caste = Caste;
     static Perspective: typeof Perspective = Perspective;
     static Table: typeof Table = Table;
+    static Backtrack: typeof Backtrack = Backtrack;
     static Util = {
         indexToCasteData,
         casteToIndexData,

@@ -5,6 +5,8 @@ import Generator from "./generator";
 import Box from "./box";
 import { indexToCasteData } from "./util";
 
+export type RealTable = Box[];
+
 export interface TableOptions {
     generate: boolean;
     genAll: boolean;
