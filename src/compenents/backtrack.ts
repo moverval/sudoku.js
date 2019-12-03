@@ -1,9 +1,10 @@
 import Table from "./table";
-import Box from "./box";
 import { PerspectiveData, rowToIndexData, indexToRowData, indexToColumnData, indexToCasteData } from "./util";
 
+export type BacktrackAlgorithm = (table: Table, perspectiveData: PerspectiveData[]) => boolean;
+
 export default class Backtrack {
-    static full(table: Table) {
+    static full(table: Table, algorithm: BacktrackAlgorithm) {
         const data: PerspectiveData[] = [];
         for(let row = 0; row < 9; row++) {
             for(let index = 0; index < 9; index++) {
@@ -12,14 +13,10 @@ export default class Backtrack {
                 }
             }
         }
-        return this.BacktrackIteration(table, data);
+        return algorithm(table, data);
     }
 
-    static sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
-    static BacktrackIteration(table: Table, perspectiveData: PerspectiveData[]) {
+    static Generation(table: Table, perspectiveData: PerspectiveData[]) {
         const index = perspectiveData[0].index;
         const rowInfo = indexToRowData(index);
         const columnInfo = indexToColumnData(index);
@@ -36,7 +33,7 @@ export default class Backtrack {
                     if(table.castes[casteInfo.boxArrayIndex].valid(num)) {
                         table.rows[rowInfo.boxArrayIndex].get(rowInfo.boxIndex).set(num);
                         if(perspectiveData.length > 1) {
-                            valid = this.BacktrackIteration(table, perspectiveData.slice(1));
+                            valid = Backtrack.Generation(table, perspectiveData.slice(1));
                         } else {
                             valid = true;
                         }
