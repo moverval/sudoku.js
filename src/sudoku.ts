@@ -1,12 +1,12 @@
-import Value from "./compenents/value";
-import Box from "./compenents/box";
-import Row from "./compenents/row";
-import Column from "./compenents/column";
-import Caste from "./compenents/caste";
-import Perspective from "./compenents/perspective";
-import Table from "./compenents/table";
-import { indexToCasteData, casteToIndexData, indexToRowData, rowToIndexData, indexToColumnData, columnToIndexData } from "./compenents/util";
-import Backtrack from "./compenents/backtrack";
+import Value from "./components/value";
+import Box from "./components/box";
+import Row from "./components/row";
+import Column from "./components/column";
+import Caste from "./components/caste";
+import Perspective from "./components/perspective";
+import Table from "./components/table";
+import { indexToCasteData, casteToIndexData, indexToRowData, rowToIndexData, indexToColumnData, columnToIndexData } from "./components/util";
+import Backtrack from "./components/backtrack";
 
 export default class Sudoku {
     static Value: typeof Value = Value;
