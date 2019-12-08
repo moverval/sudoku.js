@@ -1,12 +1,17 @@
-import Value, { NumberValue } from "./value";
+import { NumberValue } from "./value";
 
 export type BoxQueue = Box[];
 
 export default class Box {
     value: NumberValue;
+    changeable: boolean;
 
     constructor(value: NumberValue) {
         this.value = value;
+    }
+
+    isChangeable() {
+        return this.changeable;
     }
 
     get(): number {

@@ -7,6 +7,7 @@ import Perspective from "./components/perspective";
 import Table from "./components/table";
 import { indexToCasteData, casteToIndexData, indexToRowData, rowToIndexData, indexToColumnData, columnToIndexData } from "./components/util";
 import Backtrack from "./components/backtrack";
+import Erase from "./components/erase";
 
 export default class Sudoku {
     static Value: typeof Value = Value;
@@ -17,6 +18,7 @@ export default class Sudoku {
     static Perspective: typeof Perspective = Perspective;
     static Table: typeof Table = Table;
     static Backtrack: typeof Backtrack = Backtrack;
+    static Erase: typeof Erase = Erase;
     static Util = {
         indexToCasteData,
         casteToIndexData,

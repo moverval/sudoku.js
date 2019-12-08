@@ -7,11 +7,6 @@ import { indexToCasteData } from "./util";
 
 export type RealTable = Box[];
 
-export interface TableOptions {
-    generate: boolean;
-    genAll: boolean;
-}
-
 export default class Table {
     rows: Row[] = [];
     columns: Column[] = [];
@@ -19,9 +14,13 @@ export default class Table {
     real: Box[] = [];
     generator: Generator;
 
-    constructor(options: TableOptions = null) {
+    constructor(table: Table) {
         this.generator = new Generator();
-        this.real = this.generator.generateTableArray();
+        if(typeof table !== "undefined" && typeof table.real !== "undefined") {
+            this.real = this.generator.copyTableArray(table);
+        } else {
+            this.real = this.generator.generateTableArray();
+        }
         this.generate();
     }
 
@@ -41,7 +40,6 @@ export default class Table {
             const point = row * 9;
             this.rows[row].setRow(this.real[point], this.real[point + 1], this.real[point + 2], this.real[point + 3], this.real[point + 4],
                                     this.real[point + 5], this.real[point + 6], this.real[point + 7], this.real[point + 8]);
-            // this.rows[row].fillRandom();
         }
         for(let column = 0; column < 9; column++) {
             this.columns[column] = new Column();
