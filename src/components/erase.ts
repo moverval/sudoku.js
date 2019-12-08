@@ -21,9 +21,29 @@ export default class Erase {
     static createFillable(table: Table, iterations: number, timeout: number = 10) {
         let count = 0;
         let failed = 0;
+        const alreadyUsed = [];
 
         while(count < iterations) {
-            const random = Math.round(Math.random() * 80);
+            let random = Math.round(Math.random() * 80);
+            const upOrDown = Math.round(Math.random() * 1);
+
+            while(alreadyUsed.indexOf(random) >= 0) {
+                if(upOrDown) {
+                    if(random < 80) {
+                        random++;
+                    } else {
+                        random = 0;
+                    }
+                } else {
+                    if(random > 0) {
+                        random--;
+                    } else {
+                        random = 80;
+                    }
+                }
+            }
+            alreadyUsed.push(random);
+
             if(!table.real[random].isEmpty()) {
                 const value = table.real[random].get();
                 table.real[random].set(0);
@@ -39,6 +59,7 @@ export default class Erase {
                 }
             }
         }
+
         return true;
     }
 }
