@@ -1,5 +1,6 @@
 import Table from "./table";
 import Backtrack from "./backtrack";
+import { shuffle, indexToRowData, indexToColumnData, indexToCasteData } from "./util";
 
 export default class Erase {
     static HARDEST = 81;
@@ -13,21 +14,51 @@ export default class Erase {
     };
 
     static Checkover = {
-        CLEAN: 50,
-        NORMAL: 10,
+        CLEAN: 40,
+        NORMAL: 20,
         FAST: 5
     };
+
+    static EraseRandomIteration(table: Table) {
+        for(let i = 0; i < 81; i++) {
+            const erase = Math.round(Math.random() * 1);
+            if(erase) {
+                const char = table.real[i].get();
+                table.real[i].set(0);
+                if(!Backtrack.full(table, Backtrack.SolveCheck)) {
+                    table.real[i].set(char);
+                }
+            }
+        }
+    }
+
+    static EraseEveryIteration(table: Table) {
+        for(let i = 0; i < 81; i++) {
+            const char = table.real[i].get();
+            table.real[i].set(0);
+            if(!Backtrack.full(table, Backtrack.SolveCheck)) {
+                table.real[i].set(char);
+            }
+        }
+    }
+
+    static createHardFillable(table: Table) {
+        this.EraseRandomIteration(table);
+        this.EraseEveryIteration(table);
+
+        return true;
+    }
 
     static createFillable(table: Table, iterations: number, timeout: number = 10) {
         let count = 0;
         let failed = 0;
-        const alreadyUsed = [];
+        const alreadyUsed = new Set();
 
         while(count < iterations) {
             let random = Math.round(Math.random() * 80);
             const upOrDown = Math.round(Math.random() * 1);
 
-            while(alreadyUsed.indexOf(random) >= 0) {
+            while(alreadyUsed.has(random) && alreadyUsed.size < 81) {
                 if(upOrDown) {
                     if(random < 80) {
                         random++;
@@ -42,7 +73,7 @@ export default class Erase {
                     }
                 }
             }
-            alreadyUsed.push(random);
+            alreadyUsed.add(random);
 
             if(!table.real[random].isEmpty()) {
                 const value = table.real[random].get();
