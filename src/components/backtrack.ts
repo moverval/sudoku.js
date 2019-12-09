@@ -66,10 +66,13 @@ export default class Backtrack {
                             }
                             table.rows[rowInfo.boxArrayIndex].get(rowInfo.boxIndex).set(old);
                         } else {
-                            solveReturn.double = true;
-                            return solveReturn;
+                            const childSr = Backtrack.SolveIteration(table, perspectiveData.slice(1));
+
+                            if(childSr.double || childSr.valid) {
+                                solveReturn.double = true;
+                                return solveReturn;
+                            }
                         }
-                        // console.log(rowInfo.x, rowInfo.y, num);
                     }
                 }
             }

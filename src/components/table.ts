@@ -24,16 +24,6 @@ export default class Table {
         this.generate();
     }
 
-    backtrack() {
-        const random = Math.floor(Math.random() * 9) + 1;
-        this.real.forEach((box) => {
-            if(box.isEmpty()) {
-                // TODO check if sides are valid
-                return;
-            }
-        });
-    }
-
     generate() {
         for(let row = 0; row < 9; row++) {
             this.rows[row] = new Row();

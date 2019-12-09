@@ -8,9 +8,9 @@ export default class Erase {
     static EASY = 25;
 
     static Mode = {
-        HARDEST: 81,
+        HARDEST: 64,
         MIDDLE: 50,
-        EASY: 25
+        EASY: 35
     };
 
     static Checkover = {
@@ -49,7 +49,7 @@ export default class Erase {
         return true;
     }
 
-    static createFillable(table: Table, iterations: number, timeout: number = 10) {
+    static createFillable(table: Table, iterations: number, timeout: number = 10, variance=10) {
         let count = 0;
         let failed = 0;
         const alreadyUsed = new Set();
@@ -82,6 +82,7 @@ export default class Erase {
                     table.real[random].set(value);
                     ++failed;
                     if(failed === timeout) {
+                        // TODO Redo if number count is too high
                         return false;
                     }
                 } else {
